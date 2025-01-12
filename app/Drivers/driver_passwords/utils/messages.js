@@ -1,0 +1,15 @@
+export const DriverPasswordMessages = {
+  REQUIRED_FIELDS_MISSING: "Driver ID and password are required.",
+  PASSWORD_ALREADY_EXISTS: "Password for this driver already exists.",
+  PASSWORD_CREATED: "Driver password created successfully.",
+  PASSWORD_NOT_FOUND: "Password for this driver not found.",
+  PASSWORD_RETRIEVED: "Driver password retrieved successfully.",
+  PASSWORD_UPDATED: "Driver password updated successfully.",
+  PASSWORD_DELETED: "Driver password deleted successfully.",
+  PASSWORDS_FETCHED: "All driver passwords fetched successfully.",
+  ERROR_CREATING_PASSWORD: "Error creating driver password.",
+  ERROR_FETCHING_PASSWORD: "Error fetching driver password.",
+  ERROR_UPDATING_PASSWORD: "Error updating driver password.",
+  ERROR_DELETING_PASSWORD: "Error deleting driver password.",
+  INTERNAL_SERVER_ERROR: "Internal server error occurred.",
+};

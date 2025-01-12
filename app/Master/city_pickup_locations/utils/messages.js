@@ -1,0 +1,15 @@
+export const CityPickupLocationsMessages = {
+  LOCATION_CREATED: "Pickup location created successfully.",
+  LOCATIONS_RETRIEVED: "Pickup locations retrieved successfully.",
+  LOCATION_UPDATED: "Pickup location updated successfully.",
+  LOCATION_DELETED: "Pickup location deleted successfully.",
+  REQUIRED_FIELDS_MISSING: "Required fields are missing.",
+  LOCATION_NOT_FOUND: "No pickup location found.",
+  NO_LOCATIONS_FOUND: "No pickup locations available.",
+  ERROR_CREATING_LOCATION: "Error occurred while creating pickup location.",
+  ERROR_UPDATING_LOCATION: "Error occurred while updating pickup location.",
+  ERROR_DELETING_LOCATION: "Error occurred while deleting pickup location.",
+  INTERNAL_SERVER_ERROR: "Internal server error.",
+  INVALID_CITY_ID: "Please provide a valid city_id from the cities table.",
+  FOREGIN_KEY_CONSTRAINTS_ERROR: "The provided city_id does not exist.",
+};

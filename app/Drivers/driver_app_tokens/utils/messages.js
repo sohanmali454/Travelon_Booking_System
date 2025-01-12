@@ -1,0 +1,15 @@
+export const DriverAppTokensMessages = {
+  REQUIRED_FIELDS_MISSING: "Required fields are missing.",
+  TOKEN_ALREADY_EXISTS: "Token already exists.",
+  TOKEN_CREATED: "Token created successfully.",
+  TOKENS_FETCHED: "Driver app tokens fetched successfully.",
+  TOKEN_RETRIEVED: "Driver app token retrieved successfully.",
+  TOKEN_UPDATED: "Driver app token updated successfully.",
+  TOKEN_DELETED: "Driver app token deleted successfully.",
+  TOKEN_NOT_FOUND: "Token not found.",
+  ERROR_CREATING_TOKEN: "Error creating token.",
+  ERROR_FETCHING_TOKEN: "Error fetching token.",
+  ERROR_UPDATING_TOKEN: "Error updating token.",
+  ERROR_DELETING_TOKEN: "Error deleting token.",
+  INTERNAL_SERVER_ERROR: "Internal server error.",
+};
