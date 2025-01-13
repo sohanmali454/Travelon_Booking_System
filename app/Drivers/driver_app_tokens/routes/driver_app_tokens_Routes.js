@@ -1,7 +1,7 @@
 import express from "express";
 import {
   createDriverAppToken,
-  getDriverAppTokenByDriverId,
+  getDriverAppTokenById,
   getAllDriverAppTokens,
   deleteDriverAppToken,
 } from "../controller/driver_app_tokens_Controller.js";
@@ -10,10 +10,7 @@ const router = express.Router();
 
 router.post("/createDriverAppToken", createDriverAppToken);
 router.get("/getAllDriverAppTokens", getAllDriverAppTokens);
-router.get(
-  "/getDriverAppTokenByDriverId/:driver_id",
-  getDriverAppTokenByDriverId
-);
-router.delete("/deleteDriverAppToken/:driver_id", deleteDriverAppToken);
+router.get("/getDriverAppTokenById/:id", getDriverAppTokenById);
+router.delete("/deleteDriverAppToken/:id", deleteDriverAppToken);
 
 export default router;

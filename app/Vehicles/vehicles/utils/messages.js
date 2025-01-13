@@ -1,0 +1,16 @@
+export const VehiclesMessages = {
+  REQUIRED_FIELDS_MISSING: "Required fields are missing.",
+  VEHICLE_CREATED: "Vehicle created successfully.",
+  VEHICLES_RETRIEVED: "Vehicles retrieved successfully.",
+  VEHICLE_RETRIEVED: "Vehicle retrieved successfully.",
+  VEHICLE_UPDATED: "Vehicle updated successfully.",
+  VEHICLE_DELETED: "Vehicle deleted successfully.",
+  VEHICLES_NOT_FOUND: "No vehicles found.",
+  VEHICLE_NOT_FOUND: "Vehicle not found.",
+  ERROR_CREATING_VEHICLE: "An error occurred while creating the vehicle.",
+  ERROR_FETCHING_VEHICLES: "An error occurred while fetching vehicles.",
+  ERROR_FETCHING_VEHICLE: "An error occurred while fetching the vehicle.",
+  ERROR_UPDATING_VEHICLE: "An error occurred while updating the vehicle.",
+  ERROR_DELETING_VEHICLE: "An error occurred while deleting the vehicle.",
+  VEHICLE_ALREADY_EXISTS: "Vehicle already exists.",
+};

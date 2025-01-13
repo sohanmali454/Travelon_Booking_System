@@ -93,14 +93,14 @@ export const getAllDriverAppTokens = async (req, res) => {
   }
 };
 
-// GET DRIVER APP TOKEN BY DRIVER ID
-export const getDriverAppTokenByDriverId = async (req, res) => {
-  const { driver_id } = req.params;
+// GET DRIVER APP TOKEN BY  ID
+export const getDriverAppTokenById = async (req, res) => {
+  const { id } = req.params;
 
   try {
     const result = await pool.query(
-      `SELECT * FROM driver_app_tokens WHERE driver_id = $1`,
-      [driver_id]
+      `SELECT * FROM driver_app_tokens WHERE id = $1`,
+      [id]
     );
 
     if (result.rows.length === 0) {
@@ -129,12 +129,12 @@ export const getDriverAppTokenByDriverId = async (req, res) => {
 
 // DELETE DRIVER APP TOKEN
 export const deleteDriverAppToken = async (req, res) => {
-  const { driver_id } = req.params;
+  const { id } = req.params;
 
   try {
     const result = await pool.query(
-      `DELETE FROM driver_app_tokens WHERE driver_id = $1 RETURNING *`,
-      [driver_id]
+      `DELETE FROM driver_app_tokens WHERE id = $1 RETURNING *`,
+      [id]
     );
 
     if (result.rows.length === 0) {
