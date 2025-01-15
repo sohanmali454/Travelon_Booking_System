@@ -4,8 +4,7 @@ import { successResponse } from "../../../../utils/successResponse/successRespon
 import { DriversMessages } from "../utils/messages.js";
 import { DriversStatusCode } from "../utils/statusCode.js";
 
-//CREATE DRIVER
-
+// CREATE DRIVER
 export const createDriver = async (req, res) => {
   const {
     name,
@@ -17,6 +16,12 @@ export const createDriver = async (req, res) => {
     address,
     status,
   } = req.body;
+
+  console.log("Incoming request body:", req.body);
+
+  const mobileRegex = /^[0-9]{10}$/;
+  const alternateContactRegex = /^[0-9]{10}$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (
     !name ||
@@ -31,6 +36,30 @@ export const createDriver = async (req, res) => {
       res,
       DriversStatusCode.BAD_REQUEST,
       DriversMessages.REQUIRED_FIELDS_MISSING
+    );
+  }
+
+  if (!mobileRegex.test(mobile_number)) {
+    return errorResponse(
+      res,
+      DriversStatusCode.BAD_REQUEST,
+      DriversMessages.INVALID_MOBILE_NUMBER
+    );
+  }
+
+  if (!alternateContactRegex.test(alternate_contact_number)) {
+    return errorResponse(
+      res,
+      DriversStatusCode.BAD_REQUEST,
+      DriversMessages.INVALID_ALTERNATE_CONTACT_NUMBER
+    );
+  }
+
+  if (!emailRegex.test(email)) {
+    return errorResponse(
+      res,
+      DriversStatusCode.BAD_REQUEST,
+      DriversMessages.INVALID_EMAIL
     );
   }
 
@@ -67,15 +96,22 @@ export const createDriver = async (req, res) => {
   }
 };
 
-//GET DRIVER BY ID
-
+// GET DRIVER BY ID
 export const getDriverById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const result = await pool.query(`SELECT * FROM drivers WHERE id = $1`, [
-      id,
-    ]);
+    const result = await pool.query(
+      `SELECT id,name,
+    gender,
+    dob,
+    mobile_number,
+    alternate_contact_number,
+    email,
+    address,
+    status FROM drivers WHERE id = $1 AND is_deleted = FALSE`,
+      [id]
+    );
 
     if (result.rows.length === 0) {
       return errorResponse(
@@ -101,8 +137,7 @@ export const getDriverById = async (req, res) => {
   }
 };
 
-//UPDATE DRIVER
-
+// UPDATE DRIVER
 export const updateDriver = async (req, res) => {
   const { id } = req.params;
   const {
@@ -115,12 +150,44 @@ export const updateDriver = async (req, res) => {
     address,
     status,
   } = req.body;
+  console.log("Incoming request params & body:", [req.params], req.body);
+
+  const mobileRegex = /^[0-9]{10}$/;
+  const alternateContactRegex = /^[0-9]{10}$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!mobileRegex.test(mobile_number)) {
+    return errorResponse(
+      res,
+      DriversStatusCode.BAD_REQUEST,
+      DriversMessages.INVALID_MOBILE_NUMBER
+    );
+  }
+
+  if (!alternateContactRegex.test(alternate_contact_number)) {
+    return errorResponse(
+      res,
+      DriversStatusCode.BAD_REQUEST,
+      DriversMessages.INVALID_ALTERNATE_CONTACT_NUMBER
+    );
+  }
+
+  if (!emailRegex.test(email)) {
+    return errorResponse(
+      res,
+      DriversStatusCode.BAD_REQUEST,
+      DriversMessages.INVALID_EMAIL
+    );
+  }
 
   try {
     const result = await pool.query(
-      `UPDATE drivers SET name = $1, gender = $2, dob = $3, mobile_number = $4, 
-       alternate_contact_number = $5, email = $6, address = $7, status = $8, 
-       updated_at = CURRENT_TIMESTAMP WHERE id = $9 RETURNING *`,
+      `UPDATE drivers 
+       SET name = $1, gender = $2, dob = $3, mobile_number = $4, 
+           alternate_contact_number = $5, email = $6, address = $7, 
+           status = $8, updated_at = CURRENT_TIMESTAMP 
+       WHERE id = $9 AND is_deleted = FALSE 
+       RETURNING *`,
       [
         name,
         gender,
@@ -158,13 +225,14 @@ export const updateDriver = async (req, res) => {
   }
 };
 
-//DELETE DRIVER
+// DELETE DRIVER
 export const deleteDriver = async (req, res) => {
   const { id } = req.params;
 
   try {
     const result = await pool.query(
-      `DELETE FROM drivers WHERE id = $1 RETURNING *`,
+      `UPDATE drivers 
+       SET is_deleted = TRUE WHERE id = $1 RETURNING *`,
       [id]
     );
 
@@ -192,10 +260,18 @@ export const deleteDriver = async (req, res) => {
   }
 };
 
-//GET ALL DRIVERS
+// GET ALL DRIVERS
 export const getAllDrivers = async (req, res) => {
   try {
-    const result = await pool.query(`SELECT * FROM drivers`);
+    const result = await pool.query(
+      `SELECT id,name,gender,
+    dob,
+    mobile_number,
+    alternate_contact_number,
+    email,
+    address,
+    status FROM drivers WHERE is_deleted = FALSE`
+    );
     const drivers = result.rows;
 
     if (drivers.length === 0) {

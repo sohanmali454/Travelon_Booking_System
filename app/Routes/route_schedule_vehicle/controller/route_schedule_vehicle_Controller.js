@@ -5,7 +5,6 @@ import { RouteScheduleVehicleMessages } from "../utils/messages.js";
 import { RouteScheduleVehicleStatusCode } from "../utils/statusCode.js";
 
 // CREATE ROUTE SCHEDULE VEHICLE
-// CREATE ROUTE SCHEDULE VEHICLE
 export const createRouteScheduleVehicle = async (req, res) => {
   const { route_schedule_id, vehicle_id, status } = req.body;
 

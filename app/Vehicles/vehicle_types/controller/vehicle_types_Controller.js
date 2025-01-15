@@ -7,6 +7,7 @@ import { VehicleTypesStatusCode } from "../utils/statusCode.js";
 // CREATE VEHICLE TYPE
 export const createVehicleType = async (req, res) => {
   const { title } = req.body;
+  console.log("Incoming request body:", req.body);
 
   if (!title) {
     return errorResponse(
@@ -41,7 +42,9 @@ export const createVehicleType = async (req, res) => {
 // GET ALL VEHICLE TYPES
 export const getAllVehicleTypes = async (req, res) => {
   try {
-    const result = await pool.query(`SELECT * FROM vehicle_types`);
+    const result = await pool.query(
+      `SELECT id,title FROM vehicle_types WHERE is_deleted = FALSE`
+    );
 
     if (result.rows.length === 0) {
       return errorResponse(
@@ -73,7 +76,7 @@ export const getVehicleTypeById = async (req, res) => {
 
   try {
     const result = await pool.query(
-      `SELECT * FROM vehicle_types WHERE id = $1`,
+      `SELECT  id,title FROM vehicle_types WHERE id = $1 AND is_deleted = FALSE`,
       [id]
     );
 
@@ -105,6 +108,7 @@ export const getVehicleTypeById = async (req, res) => {
 export const updateVehicleType = async (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
+  console.log("Incoming request params & body:", [req.params], req.body);
 
   if (!title) {
     return errorResponse(
@@ -116,7 +120,7 @@ export const updateVehicleType = async (req, res) => {
 
   try {
     const result = await pool.query(
-      `UPDATE vehicle_types SET title = $1 WHERE id = $2 RETURNING *`,
+      `UPDATE vehicle_types SET title = $1 WHERE id = $2 AND is_deleted = FALSE RETURNING *`,
       [title, id]
     );
 
@@ -150,7 +154,7 @@ export const deleteVehicleType = async (req, res) => {
 
   try {
     const result = await pool.query(
-      `DELETE FROM vehicle_types WHERE id = $1 RETURNING *`,
+      `UPDATE vehicle_types SET is_deleted = TRUE WHERE id = $1 RETURNING *`,
       [id]
     );
 

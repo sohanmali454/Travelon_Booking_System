@@ -13,4 +13,6 @@ export const VehiclesMessages = {
   ERROR_UPDATING_VEHICLE: "An error occurred while updating the vehicle.",
   ERROR_DELETING_VEHICLE: "An error occurred while deleting the vehicle.",
   VEHICLE_ALREADY_EXISTS: "Vehicle already exists.",
+  FUEL_TYPES_RETRIEVED: "Fuels retrieved successfully.",
+  VEHICLE_COLOR_RETRIEVED: "Color retrieved successfully.",
 };

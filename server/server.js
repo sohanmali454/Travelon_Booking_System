@@ -16,6 +16,9 @@ import route_schedule_vehicle_Routes from "../app/Routes/route_schedule_vehicle/
 import vehicle_types_Routes from "../app/Vehicles/vehicle_types/routes/vehicle_types_Routes.js";
 import vehicleRoute from "../app/Vehicles/vehicles/routes/vehicles_Routes.js";
 import vehicle_pictures_Routes from "../app/Vehicles/vehicle_pictures/routes/vehicle_pictures_Routes.js";
+import route_schedule_drivers_Routes from "../app/Routes/route_schedule_drivers/routes/route_schedule_drivers_Routes.js";
+import route_rates_per_seat_Routes from "../app/Routes/route_rates_per_seat/routes/route_rates_per_seat_Routes.js";
+import userRoutes from "../app/Users/users/routes/users_Routes.js";
 import "../initDb/initDb.js";
 
 dotenv.config();
@@ -44,11 +47,16 @@ app.use("/api/cities/city_drop_locations", city_drop_locations_Routes);
 app.use("/api/routes", routeRoutes);
 app.use("/api/routes/route_schedules/", route_schedules_Routes);
 app.use("/api/routes/route_schedule_vehicle/", route_schedule_vehicle_Routes);
+app.use("/api/routes/route_schedule_drivers/", route_schedule_drivers_Routes);
+app.use("/api/routes/route_rates_per_seat/", route_rates_per_seat_Routes);
 
 //VEHICLES
 app.use("/api/vehicles", vehicleRoute);
 app.use("/api/vehicles/vehicle_types", vehicle_types_Routes);
 app.use("/api/vehicles/vehicle_pictures", vehicle_pictures_Routes);
+
+//USERS
+app.use("/api/users", userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", async () => {

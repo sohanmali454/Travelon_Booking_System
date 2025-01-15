@@ -4,7 +4,9 @@ const createVehicleTypesTable = async () => {
   const query = `
     CREATE TABLE IF NOT EXISTS vehicle_types (
       id SERIAL PRIMARY KEY,
-      title VARCHAR(100) NOT NULL
+      title VARCHAR(100) NOT NULL,
+      is_deleted BOOLEAN DEFAULT FALSE,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
   `;
 

@@ -1,0 +1,16 @@
+export const RouteRatesMessages = {
+  REQUIRED_FIELDS_MISSING: "Required fields are missing.",
+  ROUTE_RATE_CREATED: "Route rate created successfully.",
+  ROUTE_RATES_RETRIEVED: "Route rates retrieved successfully.",
+  ROUTE_RATE_RETRIEVED: "Route rate retrieved successfully.",
+  ROUTE_RATE_UPDATED: "Route rate updated successfully.",
+  ROUTE_RATE_DELETED: "Route rate deleted successfully.",
+  ROUTE_RATES_NOT_FOUND: "No route rates found.",
+  ROUTE_RATE_NOT_FOUND: "Route rate not found.",
+  ERROR_CREATING_ROUTE_RATE: "An error occurred while creating the route rate.",
+  ERROR_FETCHING_ROUTE_RATES: "An error occurred while fetching route rates.",
+  ERROR_FETCHING_ROUTE_RATE: "An error occurred while fetching the route rate.",
+  ERROR_UPDATING_ROUTE_RATE: "An error occurred while updating the route rate.",
+  ERROR_DELETING_ROUTE_RATE: "An error occurred while deleting the route rate.",
+  ROUTE_NOT_FOUND: "Route not found.",
+};

@@ -12,7 +12,9 @@ const createVehiclesTable = async () => {
       fuel_type VARCHAR(50),
       color VARCHAR(50),
       remark VARCHAR(500),
-      status SMALLINT NOT NULL
+      status SMALLINT NOT NULL,
+      is_deleted BOOLEAN DEFAULT FALSE,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
   `;
 

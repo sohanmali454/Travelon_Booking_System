@@ -30,7 +30,6 @@ export const createRouteScheduleDriver = async (req, res) => {
       );
     }
 
-    // Insert the new route_schedule_driver record
     const result = await pool.query(
       `INSERT INTO route_schedule_drivers (route_schedule_id, driver_id, status) 
        VALUES ($1, $2, $3) RETURNING *`,
@@ -46,7 +45,7 @@ export const createRouteScheduleDriver = async (req, res) => {
   } catch (error) {
     errorResponse(
       res,
-      RouteScheduleDriverStatusCode.INTERNAL_SERVER_ERROR,
+      C.INTERNAL_SERVER_ERROR,
       RouteScheduleDriverMessages.ERROR_CREATING_ROUTE_SCHEDULE_DRIVER,
       error.message
     );
@@ -57,6 +56,14 @@ export const createRouteScheduleDriver = async (req, res) => {
 export const getRouteScheduleDrivers = async (req, res) => {
   try {
     const result = await pool.query(`SELECT * FROM route_schedule_drivers`);
+
+    if (result.rows.length === 0) {
+      return errorResponse(
+        res,
+        RouteScheduleDriverStatusCode.NOT_FOUND,
+        RouteScheduleDriverMessages.ROUTE_SCHEDULE_DRIVER_NOT_FOUND
+      );
+    }
 
     successResponse(
       res,

@@ -13,6 +13,7 @@ const createDriversTable = async () => {
       address VARCHAR(100) NOT NULL,
       added_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       status VARCHAR(20),      
+      is_deleted BOOLEAN DEFAULT FALSE,
       updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 
     ); `;

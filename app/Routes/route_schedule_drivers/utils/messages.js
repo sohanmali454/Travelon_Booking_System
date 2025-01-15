@@ -20,4 +20,6 @@ export const RouteScheduleDriverMessages = {
     "Error occurred while updating route schedule driver.",
   ERROR_DELETING_ROUTE_SCHEDULE_DRIVER:
     "Error occurred while deleting route schedule driver.",
+  ROUTE_SCHEDULE_DRIVER_NOT_FOUND: "No route schedule drivers found.",
+  ROUTE_SCHEDULE_DRIVER_NOT_FOUND: "Route schedule drivers not found.",
 };
