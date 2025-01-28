@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Driver Document Upload</title>
+  </head>
+  <body>
+    <h1>Upload Driver Document</h1>
+    <form
+      id="uploadForm"
+      action="https://n9kbvjjh-3000.inc1.devtunnels.ms/api/drivers/driver_documents/createAndUploadDriverDocument"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <label for="driver_id">Driver ID:</label>
+      <input type="text" id="driver_id" name="driver_id" required />
+      <br /><br />
+
+      <label for="document_type">Document Type:</label>
+      <input type="text" id="document_type" name="document_type" required />
+      <br /><br />
+
+      <label for="status">Status:</label>
+      <select id="status" name="status" required>
+        <option value="PENDING">Pending</option>
+        <option value="APPROVED">Approved</option>
+        <option value="REJECTED">Rejected</option>
+      </select>
+      <br /><br />
+
+      <label for="driver_documents">Upload Document:</label>
+      <input
+        type="file"
+        id="driver_documents"
+        name="driver_documents"
+        required
+      />
+      <br /><br />
+
+      <button type="submit">Upload</button>
+    </form>
+  </body>
+</html>

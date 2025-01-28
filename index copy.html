@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Driver Document Upload</title>
+  </head>
+  <body>
+    <form
+      action="https://n9kbvjjh-3000.inc1.devtunnels.ms/api/vehicles/vehicle_pictures/createAndUploadVehiclePicture"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <!-- Input name should be the same as used in multer.array() -->
+      <input type="hidden" name="vehicle_id" value="14" />
+
+      <input type="file" name="image_url" multiple />
+      <!-- Assuming vehicle ID is passed here -->
+      <input type="text" name="status" value="1" />
+      <!-- Status -->
+      <button type="submit">Upload</button>
+    </form>
+  </body>
+</html>
+
+https://n9kbvjjh-3000.inc1.devtunnels.ms/uploads/files/Vehicles/14/a2d14f524e6187c2b41152af73bdb14d.jpg
