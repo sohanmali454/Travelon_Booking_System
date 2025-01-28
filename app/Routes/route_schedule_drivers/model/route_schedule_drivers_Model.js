@@ -7,6 +7,7 @@ const createRouteScheduleDriversTable = async () => {
       route_schedule_id INTEGER REFERENCES route_schedules(id) ON DELETE CASCADE,
       driver_id INTEGER REFERENCES drivers(id) ON DELETE CASCADE,
       status SMALLINT NOT NULL,
+      is_deleted BOOLEAN DEFAULT FALSE,
       updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
   `;

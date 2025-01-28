@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import { pool } from "../config/database/db.js";
 import adminRoutes from "../app/Admins/admin/routes/adminRoutes.js";
 import driverRoutes from "../app/Drivers/drivers/routes/driverRoutes.js";
@@ -19,6 +21,9 @@ import vehicle_pictures_Routes from "../app/Vehicles/vehicle_pictures/routes/veh
 import route_schedule_drivers_Routes from "../app/Routes/route_schedule_drivers/routes/route_schedule_drivers_Routes.js";
 import route_rates_per_seat_Routes from "../app/Routes/route_rates_per_seat/routes/route_rates_per_seat_Routes.js";
 import userRoutes from "../app/Users/users/routes/users_Routes.js";
+import route_schedule_rates_per_seat_Routes from "../app/Routes/route_schedule_rates_per_seat/routes/route_schedule_rates_per_seat_Routes.js";
+import city_pickup_drop_locations_Routes from "../app/Master/city_pickup_drop_locations/routes/city_pickup_drop_locations_Routes.js";
+import bookings_Routes from "../app/Bookings/bookings/routes/bookings_Routes.js";
 import "../initDb/initDb.js";
 
 dotenv.config();
@@ -28,6 +33,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 //ADMINS
 app.use("/api/admins", adminRoutes);
@@ -40,8 +49,13 @@ app.use("/api/drivers/driver_app_tokens", driver_app_tokens_Routes);
 
 //CITIES
 app.use("/api/cities", cities_serviced_Routes);
-app.use("/api/cities/city_pickup_locations", city_pickup_locations_Routes);
-app.use("/api/cities/city_drop_locations", city_drop_locations_Routes);
+app.use(
+  "/api/cities/city_pickup_drop_locations",
+  city_pickup_drop_locations_Routes
+);
+
+// app.use("/api/cities/city_pickup_locations", city_pickup_locations_Routes);
+// app.use("/api/cities/city_drop_locations", city_drop_locations_Routes);
 
 //ROUTES
 app.use("/api/routes", routeRoutes);
@@ -49,6 +63,10 @@ app.use("/api/routes/route_schedules/", route_schedules_Routes);
 app.use("/api/routes/route_schedule_vehicle/", route_schedule_vehicle_Routes);
 app.use("/api/routes/route_schedule_drivers/", route_schedule_drivers_Routes);
 app.use("/api/routes/route_rates_per_seat/", route_rates_per_seat_Routes);
+app.use(
+  "/api/routes/route_schedule_rates_per_seat/",
+  route_schedule_rates_per_seat_Routes
+);
 
 //VEHICLES
 app.use("/api/vehicles", vehicleRoute);
@@ -62,7 +80,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", async () => {
   try {
     await pool.connect();
-    console.log(`Server is running on http://192.168.93.190:${PORT}`);
+    console.log(`Server is running on http://0.0.0.0:${PORT}`);
   } catch (error) {
     console.error("Unable to start the server:", error);
   }

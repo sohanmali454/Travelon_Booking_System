@@ -1,4 +1,5 @@
 import initializeAdminDB from "../app/Admins/initDb/adminInitDB.js";
+import initializeBookingsDB from "../app/Bookings/initDb/bookingsInitDB.js";
 import initializeDriversDB from "../app/Drivers/initDb/driversInitDB.js";
 import initializeMastersDB from "../app/Master/initDb/MastersInitDB.js";
 import initializeRoutesDB from "../app/Routes/initDb/RoutesInitDB.js";
@@ -14,6 +15,7 @@ const initializeDatabase = async () => {
     await initializeRoutesDB();
     await initializeVehiclesDB();
     await initializeUsersDB();
+    await initializeBookingsDB();
     console.log("All tables are created or verified.");
   } catch (error) {
     console.error("Error initializing database...:", error);

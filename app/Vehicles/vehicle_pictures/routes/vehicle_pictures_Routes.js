@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  createVehiclePicture,
+  createAndUploadVehiclePicture,
   getAllVehiclePictures,
   getVehiclePictureById,
   updateVehiclePicture,
@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.post("/createVehiclePicture", createVehiclePicture);
+router.post("/createAndUploadVehiclePicture", createAndUploadVehiclePicture);
 router.get("/getAllVehiclePictures", getAllVehiclePictures);
 router.get("/getVehiclePictureById/:id", getVehiclePictureById);
 router.put("/updateVehiclePicture/:id", updateVehiclePicture);

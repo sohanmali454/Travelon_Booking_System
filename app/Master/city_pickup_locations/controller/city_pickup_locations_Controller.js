@@ -4,7 +4,7 @@ import { successResponse } from "../../../../utils/successResponse/successRespon
 import { CityPickupLocationsMessages } from "../utils/messages.js";
 import { CityPickupLocationsStatusCode } from "../utils/statusCode.js";
 
-// ✅ CREATE PICKUP LOCATION
+//  CREATE PICKUP LOCATION
 export const createPickupLocation = async (req, res) => {
   const { city_id, address, pincode, latitude, longitude, landmark, status } =
     req.body;
@@ -70,7 +70,7 @@ export const createPickupLocation = async (req, res) => {
   }
 };
 
-// ✅ GET ALL PICKUP LOCATIONS
+//  GET ALL PICKUP LOCATIONS
 export const getAllPickupLocations = async (req, res) => {
   try {
     const result = await pool.query(
@@ -101,7 +101,7 @@ export const getAllPickupLocations = async (req, res) => {
   }
 };
 
-// ✅ GET PICKUP LOCATIONS BY city_id
+//  GET PICKUP LOCATIONS BY city_id
 export const getPickupLocationsByCityId = async (req, res) => {
   const { city_id } = req.params;
 
@@ -135,7 +135,7 @@ export const getPickupLocationsByCityId = async (req, res) => {
   }
 };
 
-// ✅ UPDATE PICKUP LOCATION BY city_id
+// UPDATE PICKUP LOCATION BY city_id
 export const updatePickupLocationByCityId = async (req, res) => {
   const { city_id } = req.params;
   const { address, pincode, latitude, longitude, landmark, status } = req.body;
@@ -191,7 +191,7 @@ export const updatePickupLocationByCityId = async (req, res) => {
   }
 };
 
-// ✅ DELETE PICKUP LOCATION BY city_id
+//DELETE PICKUP LOCATION BY city_id
 export const deletePickupLocationByCityId = async (req, res) => {
   const { city_id } = req.params;
 

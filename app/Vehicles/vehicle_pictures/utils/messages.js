@@ -18,4 +18,5 @@ export const VehiclePicturesMessages = {
   REQUIRED_FIELDS_MISSING: "Vehicle ID and Image URL are required.",
   PICTURE_CREATED: "Vehicle picture created successfully.",
   PICTURE_ALREADY_EXISTS: "This vehicle already has an assigned picture.",
+  ERROR_CREATING_DOCUMENT: "Error uploading and creating vehicle picture",
 };

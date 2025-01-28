@@ -1,4 +1,3 @@
-// --- createVehiclePicturesTable.js ---
 import { pool } from "../../../../config/database/db.js";
 
 const createVehiclePicturesTable = async () => {
@@ -7,7 +6,9 @@ const createVehiclePicturesTable = async () => {
       id SERIAL PRIMARY KEY,
       vehicle_id INTEGER REFERENCES vehicles(id),
       image_url VARCHAR(200) NOT NULL,
-      status SMALLINT
+      status SMALLINT,     
+      is_deleted BOOLEAN DEFAULT FALSE,
+      updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
   `;
 

@@ -9,7 +9,9 @@ const createRoutesTable = async () => {
       destination_city_id INTEGER NOT NULL REFERENCES cities_serviced(id) ON DELETE CASCADE,
       travel_time_in_hours DOUBLE PRECISION NOT NULL,
       details TEXT,
+      remark TEXT,
       status VARCHAR(20) DEFAULT 'active',
+      is_deleted BOOLEAN DEFAULT FALSE,
       updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
   `;

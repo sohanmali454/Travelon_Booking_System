@@ -6,9 +6,7 @@ const createCitiesServicedTable = async () => {
       id SERIAL PRIMARY KEY,
       city_name VARCHAR(100) NOT NULL,
       description TEXT,
-      status VARCHAR(20),
-      updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-
+      status SMALLINT DEFAULT 1
     );
   `;
 

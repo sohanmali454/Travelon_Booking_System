@@ -297,3 +297,44 @@ export const getAllDrivers = async (req, res) => {
     );
   }
 };
+
+// GET DRIVER BY NAME
+export const getDriverByName = async (req, res) => {
+  const { name } = req.params;
+
+  try {
+    const result = await pool.query(
+      `SELECT id,name,
+    gender,
+    dob,
+    mobile_number,
+    alternate_contact_number,
+    email,
+    address,
+    status FROM drivers WHERE name = $1 AND is_deleted = FALSE`,
+      [name]
+    );
+
+    if (result.rows.length === 0) {
+      return errorResponse(
+        res,
+        DriversStatusCode.NOT_FOUND,
+        DriversMessages.DRIVER_NOT_FOUND
+      );
+    }
+
+    successResponse(
+      res,
+      DriversStatusCode.SUCCESS,
+      DriversMessages.DRIVER_RETRIEVED,
+      result.rows[0]
+    );
+  } catch (error) {
+    errorResponse(
+      res,
+      DriversStatusCode.INTERNAL_SERVER_ERROR,
+      DriversMessages.ERROR_FETCHING_DRIVER,
+      error.message
+    );
+  }
+};

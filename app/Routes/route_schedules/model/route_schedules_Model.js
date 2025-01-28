@@ -12,6 +12,7 @@ const createRouteSchedulesTable = async () => {
       capacity SMALLINT,
       seats_available SMALLINT NOT NULL,
       status SMALLINT NOT NULL DEFAULT 1, -- Default status could be 1 (active)
+      is_deleted BOOLEAN DEFAULT FALSE,
       updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
   `;

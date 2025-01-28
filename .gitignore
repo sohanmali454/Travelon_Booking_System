@@ -6,3 +6,4 @@ app/admin/utils/messages.js
 app/admin/model/adminModel.js
 package.json
 package-lock.json
+uploads

@@ -6,7 +6,9 @@ const createRouteScheduleVehicleTable = async () => {
       id SERIAL PRIMARY KEY,
       route_schedule_id INTEGER REFERENCES route_schedules(id),
       vehicle_id INTEGER REFERENCES vehicles(id),
-      status SMALLINT NOT NULL
+      status SMALLINT NOT NULL,
+      is_deleted BOOLEAN DEFAULT FALSE,
+      updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
   `;
 

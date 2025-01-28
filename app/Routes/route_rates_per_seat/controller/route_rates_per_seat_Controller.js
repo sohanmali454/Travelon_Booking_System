@@ -7,6 +7,7 @@ import { RouteRatesStatusCode } from "../utils/statusCode.js";
 // CREATE ROUTE RATE
 export const createRouteRatePerSeat = async (req, res) => {
   const { route_id, rate, from_date_time, to_date_time, status } = req.body;
+  console.log("Incoming request body:", req.body);
 
   if (!route_id || !rate || !from_date_time || status === undefined) {
     return errorResponse(
@@ -50,11 +51,12 @@ export const createRouteRatePerSeat = async (req, res) => {
   }
 };
 
-
 // GET ALL ROUTE RATES
 export const getAllRouteRates = async (req, res) => {
   try {
-    const result = await pool.query(`SELECT * FROM route_rates_per_seat`);
+    const result = await pool.query(
+      `SELECT id,route_id, rate, from_date_time, to_date_time, status  FROM route_rates_per_seat WHERE is_deleted = FALSE`
+    );
 
     if (result.rows.length === 0) {
       return errorResponse(
@@ -86,7 +88,7 @@ export const getRouteRateById = async (req, res) => {
 
   try {
     const result = await pool.query(
-      `SELECT * FROM route_rates_per_seat WHERE id = $1`,
+      `SELECT id,route_id, rate, from_date_time, to_date_time, status  FROM route_rates_per_seat WHERE id = $1 AND is_deleted = FALSE`,
       [id]
     );
 
@@ -118,6 +120,7 @@ export const getRouteRateById = async (req, res) => {
 export const updateRouteRate = async (req, res) => {
   const { id } = req.params;
   const { route_id, rate, from_date_time, to_date_time, status } = req.body;
+  console.log("Incoming request params & body:", [req.params], req.body);
 
   if (!route_id || !rate || !from_date_time || !status) {
     return errorResponse(
@@ -158,13 +161,13 @@ export const updateRouteRate = async (req, res) => {
   }
 };
 
-// DELETE ROUTE RATE
+// SOFT DELETE ROUTE RATE
 export const deleteRouteRate = async (req, res) => {
   const { id } = req.params;
 
   try {
     const result = await pool.query(
-      `DELETE FROM route_rates_per_seat WHERE id = $1 RETURNING *`,
+      `UPDATE route_rates_per_seat SET is_deleted = TRUE WHERE id = $1 RETURNING *`,
       [id]
     );
 

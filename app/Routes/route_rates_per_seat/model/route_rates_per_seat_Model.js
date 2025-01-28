@@ -8,7 +8,9 @@ const createRouteRatesPerSeatTable = async () => {
       rate FLOAT NOT NULL,
       from_date_time TIMESTAMP NOT NULL,
       to_date_time TIMESTAMP,
-      status SMALLINT NOT NULL
+      status SMALLINT NOT NULL,
+      is_deleted BOOLEAN DEFAULT FALSE,
+      updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
   `;
 

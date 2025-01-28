@@ -12,7 +12,7 @@ const createUsersTable = async () => {
       email VARCHAR(100),
       image_url VARCHAR(200),
       created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      verification_status SMALLINT NOT NULL CHECK (verification_status IN (0, 1)),
+      verification_status SMALLINT NOT NULL CHECK (verification_status IN (Pending-0,Completed-1)),
       status SMALLINT NOT NULL CHECK (status IN (0, 1)),
       is_deleted BOOLEAN DEFAULT FALSE,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

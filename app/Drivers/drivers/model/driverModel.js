@@ -15,7 +15,6 @@ const createDriversTable = async () => {
       status VARCHAR(20),      
       is_deleted BOOLEAN DEFAULT FALSE,
       updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-
     ); `;
 
   try {

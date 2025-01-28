@@ -14,14 +14,12 @@ export const createUser = async (req, res) => {
     alternate_contact_number,
     email,
     image_url,
-    verification_status,
-    status,
   } = req.body;
 
   try {
     const result = await pool.query(
       `INSERT INTO users (user_name, gender, dob, mobile_number, alternate_contact_number, email, image_url, verification_status, status, is_deleted) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
+       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
       [
         user_name,
         gender,
@@ -30,8 +28,6 @@ export const createUser = async (req, res) => {
         alternate_contact_number,
         email,
         image_url,
-        verification_status,
-        status,
       ]
     );
 
@@ -51,7 +47,7 @@ export const createUser = async (req, res) => {
   }
 };
 
-// GET USER BY ID 
+// GET USER BY ID
 export const getUserById = async (req, res) => {
   const { id } = req.params;
 
@@ -86,11 +82,11 @@ export const getUserById = async (req, res) => {
   }
 };
 
-// GET ALL USERS 
+// GET ALL USERS
 export const getAllUsers = async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT id, user_name, gender, dob, mobile_number, alternate_contact_number, email, image_url, verification_status, status, is_deleted 
+      `SELECT id, user_name, gender, dob, mobile_number, alternate_contact_number, email, image_url, verification_status, status,
        FROM users WHERE is_deleted = FALSE`
     );
     const users = result.rows;
@@ -178,7 +174,7 @@ export const updateUser = async (req, res) => {
   }
 };
 
-// SOFT DELETE USER 
+// DELETE USER
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
 
@@ -211,3 +207,5 @@ export const deleteUser = async (req, res) => {
     );
   }
 };
+
+

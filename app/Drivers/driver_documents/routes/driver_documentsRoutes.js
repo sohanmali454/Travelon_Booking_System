@@ -1,24 +1,21 @@
 import express from "express";
 import {
-  createDriverDocument,
-  getDriverDocumentByDriverId,
+  getDriverDocumentById,
   updateDriverDocument,
   deleteDriverDocument,
   getAllDriverDocuments,
+  createAndUploadDriverDocument,
 } from "../controller/driver_documentsController.js";
 
 const router = express.Router();
 
-router.post("/createDriverDocument", createDriverDocument);
+router.post("/createAndUploadDriverDocument", createAndUploadDriverDocument);
 
-router.get(
-  "/getDriverDocumentByDriverId/:driver_id",
-  getDriverDocumentByDriverId
-);
+router.get("/getDriverDocumentById/:id", getDriverDocumentById);
 
-router.put("/updateDriverDocument/:driver_id", updateDriverDocument);
+router.put("/updateDriverDocument/:id", updateDriverDocument);
 
-router.delete("/deleteDriverDocument/:driver_id", deleteDriverDocument);
+router.delete("/deleteDriverDocument/:id", deleteDriverDocument);
 
 router.get("/getAllDriverDocuments", getAllDriverDocuments);
 

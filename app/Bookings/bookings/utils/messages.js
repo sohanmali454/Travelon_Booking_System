@@ -1,0 +1,15 @@
+export const BookingsMessages = {
+  BOOKING_CREATED: "Booking created successfully.",
+  BOOKING_RETRIEVED: "Booking retrieved successfully.",
+  BOOKINGS_FETCHED: "Bookings fetched successfully.",
+  BOOKING_UPDATED: "Booking updated successfully.",
+  BOOKING_DELETED: "Booking deleted successfully.",
+  REQUIRED_FIELDS_MISSING: "Required fields are missing.",
+  BOOKING_NOT_FOUND: "Booking not found.",
+  ERROR_CREATING_BOOKING: "Error creating booking.",
+  ERROR_FETCHING_BOOKING: "Error fetching booking.",
+  ERROR_UPDATING_BOOKING: "Error updating booking.",
+  ERROR_DELETING_BOOKING: "Error deleting booking.",
+  INVALID_CONTACT_NUMBER: "Invalid contact number format.",
+  INVALID_EMAIL: "Invalid email format.",
+};

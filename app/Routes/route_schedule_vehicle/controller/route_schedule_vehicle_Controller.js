@@ -7,6 +7,7 @@ import { RouteScheduleVehicleStatusCode } from "../utils/statusCode.js";
 // CREATE ROUTE SCHEDULE VEHICLE
 export const createRouteScheduleVehicle = async (req, res) => {
   const { route_schedule_id, vehicle_id, status } = req.body;
+  console.log("Incoming request body:", req.body);
 
   if (!route_schedule_id || !vehicle_id || !status) {
     return errorResponse(
@@ -55,7 +56,9 @@ export const createRouteScheduleVehicle = async (req, res) => {
 // GET ALL ROUTE SCHEDULE VEHICLES
 export const getAllRouteScheduleVehicles = async (req, res) => {
   try {
-    const result = await pool.query(`SELECT * FROM route_schedule_vehicle`);
+    const result = await pool.query(
+      `SELECT id,route_schedule_id, vehicle_id, status FROM route_schedule_vehicle WHERE is_deleted = FALSE`
+    );
 
     if (result.rows.length === 0) {
       return errorResponse(
@@ -87,7 +90,7 @@ export const getRouteScheduleVehicleById = async (req, res) => {
 
   try {
     const result = await pool.query(
-      `SELECT * FROM route_schedule_vehicle WHERE id = $1`,
+      `SELECT id,route_schedule_id, vehicle_id, status FROM route_schedule_vehicle WHERE id = $1 AND is_deleted = FALSE`,
       [id]
     );
 
@@ -119,6 +122,7 @@ export const getRouteScheduleVehicleById = async (req, res) => {
 export const updateRouteScheduleVehicle = async (req, res) => {
   const { id } = req.params;
   const { route_schedule_id, vehicle_id, status } = req.body;
+  console.log("Incoming request params & body:", [req.params], req.body);
 
   if (!route_schedule_id || !vehicle_id || !status) {
     return errorResponse(
@@ -158,13 +162,15 @@ export const updateRouteScheduleVehicle = async (req, res) => {
   }
 };
 
-// DELETE ROUTE SCHEDULE VEHICLE
+// SOFT DELETE ROUTE SCHEDULE VEHICLE
 export const deleteRouteScheduleVehicle = async (req, res) => {
   const { id } = req.params;
 
   try {
     const result = await pool.query(
-      `DELETE FROM route_schedule_vehicle WHERE id = $1 RETURNING *`,
+      `UPDATE route_schedule_vehicle 
+       SET is_deleted = TRUE 
+       WHERE id = $1 RETURNING *`,
       [id]
     );
 

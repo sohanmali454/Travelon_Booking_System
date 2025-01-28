@@ -8,7 +8,8 @@ const createDriverDocumentsTable = async () => {
       document_type SMALLINT NOT NULL,
       document_url TEXT,
       status VARCHAR(20),
-      updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+      is_deleted BOOLEAN DEFAULT FALSE,
+      uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
   `;
 
